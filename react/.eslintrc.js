@@ -4,10 +4,40 @@ module.exports = {
   extends: 'standard',
   // required to lint *.vue files
   plugins: [
-    'html'
+    'react'
   ],
+  env: {
+    'browser': true,
+    'node': true
+  },
+  globals: {
+    'React': true
+  },
+  parserOptions: {
+    'ecmaVersion': 6,
+    'sourceType': 'module',
+    'ecmaFeatures': {
+      'jsx': true,
+      'arrowFunctions': true,
+      'destructuring': true,
+      'classes': true,
+      'defaultParams': true,
+      'blockBindings': true,
+      'modules': true,
+      'objectLiteralComputedProperties': true,
+      'objectLiteralShorthandMethods': true,
+      'objectLiteralShorthandProperties': true,
+      'restParams': true,
+      'spread': true,
+      'forOf': false,
+      'generators': false,
+      'templateStrings': true,
+      'superInFunctions': true,
+      'experimentalObjectRestSpread': true
+    }
+  },
   // add your custom rules here
-  'rules': {
+  rules: {
     // allow paren-less arrow functions
     'arrow-parens': 0,
     'semi': [2, 'always'],

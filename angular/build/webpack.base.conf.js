@@ -37,7 +37,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'ng-annotate!babel',
         include: projectRoot,
         exclude: /node_modules|bower_components/
       },
@@ -48,7 +48,7 @@ module.exports = {
       {
         test: /\.html$/,
         loader: 'ngtemplate?relativeTo=' + path.resolve(__dirname) + '!html',
-        exclude: /index\.template\.html/
+        exclude: /index\.html/
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -58,9 +58,16 @@ module.exports = {
           name: path.join(config.build.assetsSubDirectory, '[name].[hash:7].[ext]')
         }
       },
+      /*{
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+        loader: 'file'
+      },*/
       {
-        test: /\.raw\.html$/,
-        loader: 'html'
+        // HTML LOADER
+        // Reference: https://github.com/webpack/raw-loader
+        // Allow loading html through js
+        test: /\.html$/,
+        loader: 'raw'
       }
     ]
   },

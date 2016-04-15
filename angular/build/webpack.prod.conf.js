@@ -43,7 +43,11 @@ module.exports = merge(baseWebpackConfig, {
         comments: false
       },
       mangle: {
-        except: ['$', 'exports', 'require']
+        // You can specify all variables that should not be mangled.
+        // For example if your vendor dependency doesn't use modules
+        // and relies on global variables. Most of angular modules relies on
+        // angular global variable, so we should keep it unchanged
+        except: ['$super', '$', 'exports', 'require', 'angular']
       }*/
     }),
     // 公用的模块分开打包
@@ -72,7 +76,7 @@ module.exports = merge(baseWebpackConfig, {
     // extract css into its own file
     //new ExtractTextPlugin('[name].[contenthash].css'),
     new ExtractTextPlugin(path.join(config.build.assetsSubDirectory, '[name].[contenthash].css')),
-    
+
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /src/index.html
     // see https://github.com/ampedandwired/html-webpack-plugin

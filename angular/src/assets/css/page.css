@@ -58,10 +58,10 @@
 		background-color: #1FA8B8;
 	}
 		.view-framework-topbar {
-			
+
 		}
 	.view-framework-body {
-		
+
 	}
 		.view-framework-sidebar {
 			float: left;
@@ -80,9 +80,9 @@
 
 		.view-framework-sidebar > .sidebar-wrap {
 			position: fixed;
-			top: 50px; 
+			top: 50px;
 			bottom: 0;
-			width: 200px;		    
+			width: 200px;
 			overflow-x: hidden;
 		    overflow-y: auto;
 			/* background-color: #253C48; */
@@ -110,9 +110,6 @@
 
 /* view-framework-header
 ---------------------------------------------------------*/
-.logo {
-	float: left;
-}
 .topbar-toolbar { float: left; }
 	.topbar-toolbar > li {float: left; }
 .topbar-nav {
@@ -123,7 +120,7 @@
 
 /* view-framework-sidebar
 ---------------------------------------------------------*/
-.sidebar-nav{ 
+.sidebar-nav{
 	padding: 10px 0;
 }
 	.sidebar-nav > ul > .divider {

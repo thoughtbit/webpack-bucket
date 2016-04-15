@@ -28,6 +28,8 @@ var compiler = webpack(webpackConfig);
 --display-modules 默认情况下 node_modules 下的模块会被隐藏，加上这个参数可以显示这些被隐藏的模块
 */
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
+  contentBase: "/path/to/directory",
+  // or: contentBase: "http://localhost/",
   hot: true,
   noInfo: false,
   inline: true,
