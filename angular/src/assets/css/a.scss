@@ -1,0 +1,33 @@
+$grey-darker: #f00;
+$grey-light: #f9f9f9;
+
+body {
+  background: $grey-light;
+  color: $grey-darker;
+}
+
+a {
+  display: flex;
+  transition: all .2s ease .1s;
+  color: #333;
+  background-color: #eee;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.logo {
+    width: 76px;
+    height: 66px;
+    background: url(../images/bower-logo-mini.png) 0 0 no-repeat
+}
+.bg-a {
+    width: 400px;
+    height: 400px;
+    background: url(../images/bower-stickers.jpg) 0 0 no-repeat
+}
+
+.bg-b {
+    width: 1020px;
+    height: 897px;
+    background: url(../images/bower-logo.png) 0 0 no-repeat
+}

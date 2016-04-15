@@ -35,9 +35,3 @@ node_modules
 .sass-cache/
 npm-debug.log
 *.sublime-workspace
-
-
-dist/
-selenium-debug.log
-test/unit/coverage
-test/e2e/reports

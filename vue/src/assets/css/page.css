@@ -1,0 +1,204 @@
+@charset "utf-8";
+
+/*---------------------------------------------------------
+  primary styles
+---------------------------------------------------------*/
+
+.ui-icon {
+    display: inline-block;
+    font-style: normal;
+    position: relative;
+    text-align: center;
+    text-rendering: auto;
+    text-transform: none;
+    vertical-align: baseline;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    top: 10px;
+}
+
+.view-framework-body:before,
+.view-framework-body:after {
+    content: " ";
+    display: table;
+}
+.view-framework-body:after {
+    clear: both;
+}
+
+/* view framework layout
+---------------------------------------------------------*/
+
+.view-framework {
+  	position: relative;
+  	width: 100%;
+  	height: auto;
+  	min-height: 100%;
+  	padding-top: 50px;
+}
+.view-framework::before {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	display: block;
+	width: inherit;
+	background-color: #f0f3f4;
+	border: inherit;
+	content: "";
+}
+
+	.view-framework-header {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 50px;
+		background-color: #1FA8B8;
+	}
+		.view-framework-topbar {
+			
+		}
+	.view-framework-body {
+		
+	}
+		.view-framework-sidebar {
+			float: left;
+			width: 200px;
+		}
+		.view-framework-sidebar::before{
+			background-color: #253C48;
+		    border: inherit;
+		    bottom: 0;
+		    content: "";
+		    position: fixed;
+		    top: 0;
+		    width: inherit;
+		    z-index: -1;
+		}
+
+		.view-framework-sidebar > .sidebar-wrap {
+			position: fixed;
+			top: 50px; 
+			bottom: 0;
+			width: 200px;		    
+			overflow-x: hidden;
+		    overflow-y: auto;
+			/* background-color: #253C48; */
+		    box-shadow: 4px 0 5px 0 rgba(0, 0, 0, 0.05);
+		}
+
+		.view-framework-sidebar > .sidebar-wrap > .sidebar-nav-wrap {
+			height: 100%;
+		    overflow-x: hidden;
+		    overflow-y: scroll;
+		    position: relative;
+		    width: 217px;
+		}
+		.view-framework-main, .view-framework-footer {
+			margin-left: 200px;
+		}
+	.view-framework-footer {
+		position: absolute;
+		left: 0;
+		right: 0;
+	    bottom: 0;
+	    padding: 10px 15px;
+	    background-color: #f0f3f4;
+	}
+
+/* view-framework-header
+---------------------------------------------------------*/
+.logo {
+	float: left;
+}
+.topbar-toolbar { float: left; }
+	.topbar-toolbar > li {float: left; }
+.topbar-nav {
+	float: right;
+}
+
+.topbar-nav > li {float: left;}
+
+/* view-framework-sidebar
+---------------------------------------------------------*/
+.sidebar-nav{ 
+	padding: 10px 0;
+}
+	.sidebar-nav > ul > .divider {
+		height: 0;
+	    font-size: 0;
+	    margin: 10px 0;
+	    overflow: hidden;
+	    padding: 0;
+	    border-bottom: 1px solid #324753;
+	}
+	.sidebar-nav > ul > li > a {
+		padding: 10px 20px;
+		color: #fff;
+	}
+    .sidebar-nav > ul > li a {
+    	display: block;
+    	clear: both;
+    	white-space: nowrap;
+    	color: rgba(255, 255, 255, 0.75);
+    }
+    .sidebar-nav > ul > li a:hover {
+    	background-color: #1FA8B8;
+    	color: rgba(255, 255, 255, 1);
+    }
+	.sidebar-nav > ul > li a:before,
+    .sidebar-nav > ul > li a:after {
+	    content: " ";
+	    display: table;
+	}
+    .sidebar-nav > ul > li a:after {
+	    clear: both;
+	    font-size: 0;
+	    height: 0;
+	    visibility: hidden;
+	}
+	.sidebar-nav > ul > li > a .sidebar-nav-icon {
+		float: left;
+	    margin: -10px 5px -10px -10px;
+	    overflow: hidden;
+	    text-align: center;
+	    width: 40px;
+	    height: 40px;
+	}
+	.sidebar-nav > ul > li > a .sidebar-nav-arrow,
+	.sidebar-nav > ul > li > a .sidebar-nav-badge {
+		float: right;
+		margin-left: 8px;
+		font-weight: normal;
+	}
+	.sidebar-nav > ul > li > a .sidebar-nav-arrow {
+		width: 14px;
+		height: 14px;
+		background-color: #fff;
+		margin-top: 4px;
+	}
+	.sidebar-nav .sub-nav {
+		padding: 10px 0;
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+	.sidebar-nav .sub-nav li a {
+		padding: 5px 20px 5px 54px;
+	}
+
+	.sidebar-nav .sub-nav li a .sidebar-nav-badge {
+		float: right;
+		font-weight: normal;
+	}
+
+
+/* view-framework-main
+---------------------------------------------------------*/
+
+
+/* view-framework-footer
+---------------------------------------------------------*/
+.view-framework-footer > .copyright {
+	text-align: center;
+}

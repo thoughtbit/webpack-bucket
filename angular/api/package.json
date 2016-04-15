@@ -1,0 +1,24 @@
+{
+  "name": "json-server-api",
+  "version": "0.0.1",
+  "description": "```bash $ npm install -g json-server ```",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "devDependencies": {
+    "faker": "^3.0.1",
+    "lodash": "^4.5.1",
+    "mockjs": "^1.0.1-beta2"
+  },
+  "dependencies": {
+    "json-server": "0.8.8",
+    "open": "0.0.5"
+  },
+  "keywords": [
+    "json-server"
+  ],
+  "author": "moocss",
+  "license": "MIT"
+}
