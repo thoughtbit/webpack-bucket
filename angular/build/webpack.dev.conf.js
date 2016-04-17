@@ -4,6 +4,8 @@ var baseWebpackConfig = require('./webpack.base.conf');
 var cssLoaders = require('./css-loaders');
 var hotReload = require('./hot-reload');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // hot reload
 hotReload(baseWebpackConfig);
@@ -15,20 +17,17 @@ module.exports = merge(baseWebpackConfig, {
     loaders: cssLoaders()
   },
   plugins: [
-    /*
     // 将jQuery全局暴露
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
       // materialize-css rely on this to support velocity
-      "window.jQuery": "jquery"
-      _: 'lodash',
-      React: 'react',
-      ReactDom: 'react-dom',
-      ReactDOM: 'react-dom'
+      "window.jQuery": "jquery",
+      _: 'lodash'
     }),
     // 公用的模块分开打包
-    new CommonsChunkPlugin('vendor', 'vendor.js'),
+    // new CommonsChunkPlugin('vendor', 'vendor.js'),
+    new CommonsChunkPlugin({ name: 'vendor' }),
     new CommonsChunkPlugin({
       name: 'admin-commons',
       chunks: ['ap1', 'ap2']
@@ -46,7 +45,6 @@ module.exports = merge(baseWebpackConfig, {
       name: 'all-commons',
       chunks: ['commons.js', 'c-commons.js']
     }),
-    */
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -54,10 +52,16 @@ module.exports = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './src/index.html',
-      /*chunks: ['app', 'vendor', 'all-commons'],*/
+      template: 'index.template.html',
+      chunks: ['app', 'vendor', 'all-commons'],
       inject: 'body',
-      favicon: 'src/favicon.ico'
-    })
+      favicon: 'favicon.ico'
+    }),
+    // copy指定文件到指定路径
+    // https://www.npmjs.com/package/copy-webpack-plugin
+    new CopyWebpackPlugin([
+      { from: 'src/assets/images/', to: 'static/images/'},
+      /*{ from: 'src/assets/fonts/', to: 'static/fonts/'}*/
+    ])
   ]
 });

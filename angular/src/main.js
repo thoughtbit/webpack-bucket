@@ -1,5 +1,6 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
+import $ from 'jquery';
 
 import './assets/css/base.css';
 import './assets/css/page.css';
@@ -10,6 +11,9 @@ class AppCtrl {
   constructor () {
     this.title = 'hello world!';
     this.url = 'https://github.com/preboot/angular-webpack';
+  }
+  fn () {
+    $('.logo').hide();
   }
 }
 

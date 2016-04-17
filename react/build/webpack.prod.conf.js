@@ -47,43 +47,25 @@ module.exports = merge(baseWebpackConfig, {
       }*/
     }),
     // 公用的模块分开打包
-    /*
-    new CommonsChunkPlugin('vendor', 'vendor.js'),
-    new CommonsChunkPlugin({
-      name: 'admin-commons',
-      chunks: ['ap1', 'ap2']
-    }),
-    new CommonsChunkPlugin({
-      name: 'commons',
-      chunks: ['p1', 'p2', 'admin-commons.js'],
-      minChunks: 2
-    }),
-    new CommonsChunkPlugin({
-      name: 'c-commons',
-      chunks: ['p3', 'ap3']
-    }),
-    new CommonsChunkPlugin({
-      name: 'all-commons',
-      chunks: ['commons.js', 'c-commons.js']
-    }),
-    */
+    // new CommonsChunkPlugin('vendor', 'vendor.js'),
+    new CommonsChunkPlugin({ name: 'vendor' }),
     // 按引用频度来排序 ID，以便达到减少文件大小的效果
     new webpack.optimize.OccurenceOrderPlugin(),
     // extract css into its own file
     //new ExtractTextPlugin('[name].[contenthash].css'),
     new ExtractTextPlugin(path.join(config.build.assetsSubDirectory, '[name].[contenthash].css')),
-    
+
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /src/index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     // 可以多个
     new HtmlWebpackPlugin({
       filename: process.env.NODE_ENV === 'testing' ? 'index.html' : config.build.index,
-      template: 'src/index.html',
+      template: 'index.template.html',
       /*template:__dirname + '/src/app.html'*/
-      /*chunks: ['app', 'vendor', 'all-commons'],*/
-      inject: 'body',
-      favicon: 'src/favicon.ico',
+      chunks: ['app', 'vendor'],
+      inject: true,
+      favicon: 'favicon.ico',
       minify: {
         removeComments: true,
         collapseWhitespace: true,

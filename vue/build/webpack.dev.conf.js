@@ -55,10 +55,10 @@ module.exports = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './src/index.html',
+      template: 'index.template.html',
       /*chunks: ['app', 'vendor', 'all-commons'],*/
       inject: 'body',
-      favicon: 'src/favicon.ico'
+      favicon: 'favicon.ico'
     })
   ]
 });

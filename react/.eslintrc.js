@@ -1,18 +1,24 @@
 module.exports = {
   root: true,
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
+  // extends: 'standard',
   // required to lint *.vue files
   plugins: [
-    'react'
+    'react',
+    'babel'
   ],
   env: {
-    'browser': true,
-    'node': true
+    browser: true,
+    node: true,
+    mocha: true,
+    jest: true,
+    es6: true
   },
   globals: {
-    'React': true
+    'React': true,
+    'ReactDOM': true
   },
+  parser: 'babel-eslint',
   parserOptions: {
     'ecmaVersion': 6,
     'sourceType': 'module',
@@ -38,6 +44,17 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
+    'comma-dangle': 0,
+    'func-names': 0,
+    'prefer-const': 0,
+    'arrow-body-style': 0,
+    'react/sort-comp': 0,
+    'react/prop-types': 0,
+    'react/jsx-closing-bracket-location': 0,
+    'no-param-reassign': 0,
+    'no-return-assign': 0,
+    'max-len': 0,
+    'consistent-return': 0,
     // allow paren-less arrow functions
     'arrow-parens': 0,
     'semi': [2, 'always'],

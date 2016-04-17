@@ -5,7 +5,19 @@ var projectRoot = path.resolve(__dirname, '../');
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main',
+    vendor: [
+      'angular',
+      'angular-ui-router',
+      'oclazyload',
+      'jquery',
+      'lodash'
+    ],
+    p1: './src/page-a',
+    p2: './src/page-b',
+    p3: './src/page-c',
+    ap1: './src/admin-page-a',
+    ap2: './src/admin-page-b'
   },
   output: {
     path: config.build.assetsRoot,
@@ -14,7 +26,7 @@ module.exports = {
   },
   resolve: {
     // 自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名
-    extensions: ['', '.js', 'css', 'less', 'scss'],
+    extensions: ['', '.js'],
     fallback: [path.join(__dirname, '../node_modules')],
     // 模块别名定义，方便后续直接引用别名
     alias: {
@@ -48,8 +60,24 @@ module.exports = {
       {
         test: /\.html$/,
         loader: 'ngtemplate?relativeTo=' + path.resolve(__dirname) + '!html',
-        exclude: /index\.html/
+        exclude: /index\.template\.html/
       },
+      {
+        test: /\.(woff|woff2|ttf|eot|svg)$/,
+        loader : 'file',
+        query: {
+          name: path.join(config.build.assetsSubDirectory + '/assets/fonts/', '[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
+        loader: 'url',
+        query: {
+          limit: 10000,
+          name: path.join(config.build.assetsSubDirectory + '/assets/images/', '[name].[hash:7].[ext]')
+        }
+      },
+      /*
       {
         test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url',
@@ -57,15 +85,8 @@ module.exports = {
           limit: 10000,
           name: path.join(config.build.assetsSubDirectory, '[name].[hash:7].[ext]')
         }
-      },
-      /*{
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-        loader: 'file'
       },*/
       {
-        // HTML LOADER
-        // Reference: https://github.com/webpack/raw-loader
-        // Allow loading html through js
         test: /\.html$/,
         loader: 'raw'
       }

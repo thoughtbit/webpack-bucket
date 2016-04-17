@@ -26,22 +26,26 @@ module.exports = function (options) {
   return [
     {
       test: /\.css$/,
-      loader: generateLoaders(['css', 'postcss']),
+      loader: generateLoaders(['css', 'postcss'])
     },
     {
       test: /\.less$/,
-      loader: generateLoaders(['css', 'less', 'postcss']),
+      loader: generateLoaders(['css', 'less', 'postcss'])
     },
     {
-      test: /\.scss/,
-      loader: generateLoaders(['css', 'sass', 'postcss'])
-    },
-    {
-      test: /\.sass/,
+      test: /\.sass$/,
       loader: generateLoaders(['css', 'sass?indentedSyntax', 'postcss'])
     },
     {
-      test: /\.(stylus|styl)$/,
+      test: /\.scss$/,
+      loader: generateLoaders(['css', 'sass', 'postcss'])
+    },
+    {
+      test: /\.stylus$/,
+      loader: generateLoaders(['css', 'stylus', 'postcss'])
+    },
+    {
+      test: /\.styl$/,
       loader: generateLoaders(['css', 'stylus', 'postcss'])
     }
   ];

@@ -72,18 +72,18 @@ module.exports = merge(baseWebpackConfig, {
     // extract css into its own file
     //new ExtractTextPlugin('[name].[contenthash].css'),
     new ExtractTextPlugin(path.join(config.build.assetsSubDirectory, '[name].[contenthash].css')),
-    
+
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /src/index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     // 可以多个
     new HtmlWebpackPlugin({
       filename: process.env.NODE_ENV === 'testing' ? 'index.html' : config.build.index,
-      template: 'src/index.html',
+      template: 'index.template.html',
       /*template:__dirname + '/src/app.html'*/
       /*chunks: ['app', 'vendor', 'all-commons'],*/
       inject: 'body',
-      favicon: 'src/favicon.ico',
+      favicon: 'favicon.ico',
       minify: {
         removeComments: true,
         collapseWhitespace: true,

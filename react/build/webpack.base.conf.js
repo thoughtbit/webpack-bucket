@@ -5,7 +5,14 @@ var projectRoot = path.resolve(__dirname, '../');
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main',
+    vendor: [
+      'react',
+      'react-dom',
+      'react-router',
+      'jquery',
+      'lodash'
+    ]
   },
   output: {
     path: config.build.assetsRoot,
@@ -46,13 +53,29 @@ module.exports = {
         loader: 'json'
       },
       {
+        test: /\.(woff|woff2|ttf|eot|svg)$/,
+        loader : 'file',
+        query: {
+          name: path.join(config.build.assetsSubDirectory + '/assets/fonts/', '[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
+        loader: 'url',
+        query: {
+          limit: 10000,
+          name: path.join(config.build.assetsSubDirectory + '/assets/images/', '[name].[hash:7].[ext]')
+        }
+      },
+      /*
+      {
         test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url',
         query: {
           limit: 10000,
           name: path.join(config.build.assetsSubDirectory, '[name].[hash:7].[ext]')
         }
-      }
+      },*/
     ]
   },
   postcss: [
