@@ -1,11 +1,11 @@
 module.exports = {
   root: true,
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  // extends: 'standard',
-  // required to lint *.vue files
+  extends: [
+    "standard-react"
+  ],
   plugins: [
-    'react',
-    'babel'
+    'react'
   ],
   env: {
     browser: true,
@@ -55,6 +55,7 @@ module.exports = {
     'no-return-assign': 0,
     'max-len': 0,
     'consistent-return': 0,
+    "no-unused-vars": 0,
     // allow paren-less arrow functions
     'arrow-parens': 0,
     'semi': [2, 'always'],

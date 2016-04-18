@@ -7,6 +7,7 @@ var open = require("open");
 
 var proxyMiddleware = require('http-proxy-middleware');
 var webpackConfig = process.env.NODE_ENV === 'testing' ? require('./webpack.prod.conf') : require('./webpack.dev.conf');
+console.log('compiler:', webpackConfig);
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port;
@@ -16,7 +17,6 @@ var proxyTable = config.dev.proxyTable;
 
 var app = express();
 var compiler = webpack(webpackConfig);
-
 // serve webpack bundle output
 // webpack-dev-middleware是一个处理静态资源的middleware，可以代替 webpack-dev-server，webpack-dev-server也是用它处理的。
 /*

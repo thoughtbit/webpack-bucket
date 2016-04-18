@@ -76,14 +76,12 @@ app.use(hotMiddleware);
 var staticPath = path.join(config.build.assetsPublicPath, config.build.assetsSubDirectory);
 app.use(staticPath, express.static('./static'));
 
-var server = app.listen(port, 'localhost', function (err) {
+module.exports = app.listen(port, function (err) {
   if (err) {
-    console.log(err);
-    return;
+    console.log(err)
+    return
   }
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Listening at http://%s:%s', host, port, '\n');
-});
+  console.log('Listening at http://localhost:' + port + '\n')
+})
 
 open('http://localhost:' + port, 'FireFox');

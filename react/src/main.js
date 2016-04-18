@@ -1,5 +1,5 @@
 // Import React and JS
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import HelloBox from './components/HelloBox';
 

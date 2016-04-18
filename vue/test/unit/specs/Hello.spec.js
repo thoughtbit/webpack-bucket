@@ -1,7 +1,12 @@
-/* global describe, it, expect */
+import Vue from 'vue'
+import Hello from 'src/components/Hello'
 
-describe('一个基本方法测试', () => {
-  it('字符是否恒等', () => {
-    expect('abcd').toEqual('abcd');
-  });
-});
+describe('Hello.vue', () => {
+  it('should render correct contents', () => {
+    const vm = new Vue({
+      template: '<div><hello></hello></div>',
+      components: { Hello }
+    }).$mount()
+    expect(vm.$el.querySelector('.hello h1').textContent).to.contain('Hello World!')
+  })
+})

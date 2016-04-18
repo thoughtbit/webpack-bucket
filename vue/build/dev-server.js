@@ -28,17 +28,12 @@ var compiler = webpack(webpackConfig);
 --display-modules 默认情况下 node_modules 下的模块会被隐藏，加上这个参数可以显示这些被隐藏的模块
 */
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
-  hot: true,
-  noInfo: false,
-  inline: true,
   publicPath: webpackConfig.output.publicPath,
   stats: {
     colors: true,
-    chunks: false,
-    cached: false
+    chunks: false
   }
 });
-
 
 // enable hot-reload and state-preserving
 // compilation error display
@@ -76,14 +71,12 @@ app.use(hotMiddleware);
 var staticPath = path.join(config.build.assetsPublicPath, config.build.assetsSubDirectory);
 app.use(staticPath, express.static('./static'));
 
-var server = app.listen(port, 'localhost', function (err) {
+module.exports = app.listen(port, function (err) {
   if (err) {
-    console.log(err);
-    return;
+    console.log(err)
+    return
   }
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Listening at http://%s:%s', host, port, '\n');
-});
+  console.log('Listening at http://localhost:' + port + '\n')
+})
 
 open('http://localhost:' + port, 'FireFox');

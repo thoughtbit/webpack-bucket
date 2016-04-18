@@ -6,7 +6,14 @@ var projectRoot = path.resolve(__dirname, '../');
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main',
+    vendor: [
+      'vue',
+      'vue-router',
+      'vue-resource',
+      'jquery',
+      'lodash'
+    ]
   },
   output: {
     path: config.build.assetsRoot,
@@ -20,7 +27,8 @@ module.exports = {
     // 模块别名定义，方便后续直接引用别名
     alias: {
       'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets')
+      'assets': path.resolve(__dirname, '../src/assets'),
+      'components': path.resolve(__dirname, '../src/components')
     }
   },
   resolveLoader: {
@@ -31,11 +39,13 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'eslint',
-        exclude: /node_modules|bower_components/
+        include: projectRoot,
+        exclude: /node_modules/
       },
       {
         test: /\.js$/,
         loader: 'eslint',
+        include: projectRoot,
         exclude: /node_modules|bower_components/
       }
     ],
@@ -59,24 +69,40 @@ module.exports = {
         loader: 'vue-html'
       },
       {
+        test: /\.(woff|woff2|ttf|eot|svg)$/,
+        loader : 'file',
+        query: {
+          name: path.join(config.build.assetsSubDirectory + '/assets/fonts/', '[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
+        loader: 'url',
+        query: {
+          limit: 10000,
+          name: path.join(config.build.assetsSubDirectory + '/assets/images/', '[name].[hash:7].[ext]')
+        }
+      }
+      /*
+      {
         test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url',
         query: {
           limit: 10000,
           name: path.join(config.build.assetsSubDirectory, '[name].[hash:7].[ext]')
         }
-      }
+      },*/
     ]
+  },
+  vue: {
+    loaders: cssLoaders()
   },
   postcss: [
     autoprefixer({
       browsers: ['last 2 version']
     })
   ],
-  vue: {
-    loaders: cssLoaders()
-  },
   eslint: {
     formatter: require('eslint-friendly-formatter')
   }
-};
+}

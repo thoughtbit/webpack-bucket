@@ -31,5 +31,5 @@ module.exports = function (options) {
     scss: generateLoaders(['css', 'sass', 'postcss']),
     stylus: generateLoaders(['css', 'stylus', 'postcss']),
     styl: generateLoaders(['css', 'stylus', 'postcss'])
-  };
+  }
 }

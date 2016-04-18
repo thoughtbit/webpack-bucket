@@ -7,8 +7,7 @@ var baseWebpackConfig = require('./webpack.base.conf');
 var cssLoaders = require('./css-loaders');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
-//var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 
 module.exports = merge(baseWebpackConfig, {
   // sourceMap是发散的，和output.sourceMapFilename协调使用
@@ -34,7 +33,7 @@ module.exports = merge(baseWebpackConfig, {
       }
     }),
     // 排除相似的或相同的，避免在最终生成的文件中出现重复的模块。
-    //new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
@@ -46,27 +45,8 @@ module.exports = merge(baseWebpackConfig, {
         except: ['$', 'exports', 'require']
       }*/
     }),
-    // 公用的模块分开打包
-    /*
-    new CommonsChunkPlugin('vendor', 'vendor.js'),
-    new CommonsChunkPlugin({
-      name: 'admin-commons',
-      chunks: ['ap1', 'ap2']
-    }),
-    new CommonsChunkPlugin({
-      name: 'commons',
-      chunks: ['p1', 'p2', 'admin-commons.js'],
-      minChunks: 2
-    }),
-    new CommonsChunkPlugin({
-      name: 'c-commons',
-      chunks: ['p3', 'ap3']
-    }),
-    new CommonsChunkPlugin({
-      name: 'all-commons',
-      chunks: ['commons.js', 'c-commons.js']
-    }),
-    */
+    // new CommonsChunkPlugin('vendor', 'vendor.js'),
+    new CommonsChunkPlugin({ name: 'vendor' }),
     // 按引用频度来排序 ID，以便达到减少文件大小的效果
     new webpack.optimize.OccurenceOrderPlugin(),
     // extract css into its own file
@@ -81,7 +61,7 @@ module.exports = merge(baseWebpackConfig, {
       filename: process.env.NODE_ENV === 'testing' ? 'index.html' : config.build.index,
       template: 'index.template.html',
       /*template:__dirname + '/src/app.html'*/
-      /*chunks: ['app', 'vendor', 'all-commons'],*/
+      chunks: ['app', 'vendor'],
       inject: 'body',
       favicon: 'favicon.ico',
       minify: {

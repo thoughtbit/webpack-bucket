@@ -1,10 +1,10 @@
 {
-  "name": "ng-admin",
+  "name": "vue-webpack",
   "version": "0.0.1",
-  "description": "AngularJS ES6 Admin System",
+  "description": "Vue ES6 Admin System",
   "private": true,
   "scripts": {
-    "dev": "node  build/dev-server.js",
+    "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
@@ -13,7 +13,6 @@
     "api": "node api/server.js"
   },
   "devDependencies": {
-    "angular-mocks": "^1.5.0",
     "autoprefixer-core": "^5.2.0",
 
     "babel-core": "^6.0.0",
@@ -41,12 +40,16 @@
     "function-bind": "^1.0.2",
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.12.0",
+    "copy-webpack-plugin": "^2.1.1",
     "inject-loader": "^2.0.1",
     "isparta-loader": "^2.0.0",
     "json-loader": "^0.5.4",
     "karma": "^0.13.15",
     "karma-coverage": "^0.5.5",
     "karma-mocha": "^0.2.2",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-sinon-chai": "^1.2.0",
     "karma-sourcemap-loader": "^0.3.7",
@@ -61,17 +64,12 @@
     "shelljs": "^0.6.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "raw-loader": "^0.5.1",
-    "html-loader": "^0.4.3",
-    "ng-annotate-loader": "^0.1.0",
-    "ngtemplate-loader": "^1.3.1",
     "url-loader": "^0.5.7",
     "postcss-loader": "^0.8.2",
-    "sass-loader": "^3.2.0",
+    "vue-hot-reload-api": "^1.2.0",
+    "vue-html-loader": "^1.0.0",
+    "vue-loader": "^8.2.1",
     "vue-style-loader": "^1.0.0",
-    "less": "^2.6.1",
-    "less-loader": "^2.2.2",
-    "node-sass": "^3.4.2",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0",
@@ -81,6 +79,8 @@
   },
   "dependencies": {
     "vue": "^1.0.18",
+    "vue-router": "^0.7.13",
+    "vue-resource": "^0.7.0",
     "jquery": "~2.1.4",
     "lodash": "^4.6.1",
 
@@ -92,7 +92,7 @@
   },
   "keywords": [
     "webpack",
-    "angluar",
+    "vue",
     "es6"
   ],
   "author": "moocss",

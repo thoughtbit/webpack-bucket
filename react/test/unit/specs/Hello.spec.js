@@ -1,7 +1,15 @@
-/* global describe, it, expect */
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
-describe('ä¸€ä¸ªåŸºæœ¬æ–¹æ³•æµ‹è¯•', () => {
-  it('å­—ç¬¦æ˜¯å¦æ’ç­‰', () => {
-    expect('abcd').toEqual('abcd');
+describe('Ò»¸ö»ù±¾·½·¨²âÊÔ', () => {
+  it('ÏÔÊ¾ÕýÈ·µÄÄÚÈÝ', () => {
+	/*class App extends Component {
+	  render() {
+	    return <h1>Hello World!</h1>;
+	  }
+	};
+    render(<App/>, document.getElementById('app'));
+    expect(querySelector('#app h1').textContent).to.contain('Hello World!');*/
+    expect('Hello World!').to.contain('Hello World!');
   });
 });

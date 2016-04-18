@@ -8,7 +8,7 @@ var cssLoaders = require('./css-loaders');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-//var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 
 module.exports = merge(baseWebpackConfig, {
   // sourceMap是发散的，和output.sourceMapFilename协调使用
@@ -34,7 +34,7 @@ module.exports = merge(baseWebpackConfig, {
       }
     }),
     // 排除相似的或相同的，避免在最终生成的文件中出现重复的模块。
-    //new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false

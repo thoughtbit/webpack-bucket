@@ -14,7 +14,7 @@ module.exports = merge(baseWebpackConfig, {
   // sourceMap是发散的，和output.sourceMapFilename协调使用
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
-    /*path: config.build.assetsRoot,*/
+    path: config.build.assetsRoot,
     // naming output files with hashes for better caching.
     // dist/index.html will be auto-generated with correct URLs.
     filename: path.join(config.build.assetsSubDirectory, '[name].[chunkhash].js'),

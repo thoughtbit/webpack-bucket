@@ -1,6 +1,6 @@
 // 1. start the dev server using production config
-process.env.NODE_ENV = 'testing'
-var server = require('../../build/dev-server.js')
+process.env.NODE_ENV = 'testing';
+var server = require('../../build/dev-server.js');
 
 // 2. run the nightwatch test suite against it
 // to run in additional browsers:
@@ -8,7 +8,7 @@ var server = require('../../build/dev-server.js')
 //    2. add it to the --env flag below
 // For more information on Nightwatch's config file, see
 // http://nightwatchjs.org/guide#settings-file
-var spawn = require('cross-spawn')
+var spawn = require('cross-spawn');
 var runner = spawn(
   './node_modules/.bin/nightwatch',
   [
@@ -18,14 +18,14 @@ var runner = spawn(
   {
     stdio: 'inherit'
   }
-)
+);
 
 runner.on('exit', function (code) {
-  server.close()
-  process.exit(code)
-})
+  server.close();
+  process.exit(code);
+});
 
 runner.on('error', function (err) {
-  server.close()
+  server.close();
   throw err
-})
+});
