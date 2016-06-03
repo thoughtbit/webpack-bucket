@@ -13,7 +13,7 @@ module.exports = {
   rules: {
     // allow paren-less arrow functions
     'arrow-parens': 0,
-    'semi': [2, 'always'],
+    // 'semi': [2, 'always'],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }

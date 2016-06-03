@@ -1,13 +1,15 @@
-var path = require('path');
-var config = require('../config');
-var autoprefixer = require('autoprefixer-core');
-var projectRoot = path.resolve(__dirname, '../');
+var path = require('path')
+var config = require('../config')
+var utils = require('./utils')
+var autoprefixer = require('autoprefixer-core')
+var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
   entry: {
     app: './src/main',
     vendor: [
       'angular',
+      'angular-animate',
       'angular-ui-router',
       'oclazyload',
       'jquery',
@@ -31,7 +33,8 @@ module.exports = {
     // 模块别名定义，方便后续直接引用别名
     alias: {
       'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets')
+      'assets': path.resolve(__dirname, '../assets'),
+      'components': path.resolve(__dirname, '../src/components')
     }
   },
   resolveLoader: {
@@ -44,6 +47,11 @@ module.exports = {
         loader: 'eslint',
         include: projectRoot,
         exclude: /node_modules|bower_components/
+      },
+      {
+        test: /\.scss$/,
+        loader: "scsslint",
+        exclude: /node_modules/
       }
     ],
     loaders: [
@@ -59,37 +67,28 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'ngtemplate?relativeTo=' + path.resolve(__dirname) + '!html',
+        loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, '../src/')) + '/!html',
         exclude: /index\.template\.html/
       },
       {
         test: /\.(woff|woff2|ttf|eot|svg)$/,
-        loader : 'file',
+        loader: 'url',
         query: {
-          name: path.join(config.build.assetsSubDirectory + '/assets/fonts/', '[name].[hash:7].[ext]')
+          name: utils.assetsPath('assets/fonts/[name].[hash:7].[ext]')
         }
       },
       {
-        test: /\.(png|jpe?g|gif)(\?.*)?$/,
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: path.join(config.build.assetsSubDirectory + '/assets/images/', '[name].[hash:7].[ext]')
-        }
-      },
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loaders: [
+          'url?limit=10000&name=' + utils.assetsPath('assets/images/[name].[hash:7].[ext]'),
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
+      }
       /*
-      {
-        test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: path.join(config.build.assetsSubDirectory, '[name].[hash:7].[ext]')
-        }
-      },*/
       {
         test: /\.html$/,
         loader: 'raw'
-      }
+      }*/
     ]
   },
   postcss: [
@@ -100,4 +99,4 @@ module.exports = {
   eslint: {
     formatter: require('eslint-friendly-formatter')
   }
-};
+}
