@@ -10,7 +10,7 @@ import './assets/css/b.less'
 class AppCtrl {
   constructor () {
     this.title = 'hello world!'
-    this.url = 'https://github.com/preboot/angular-webpack'
+    this.url = 'https://github.com/moocss'
   }
   fn () {
     $('.logo').hide()
