@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-describe('Ò»¸ö»ù±¾·½·¨²âÊÔ', () => {
-  it('ÏÔÊ¾ÕýÈ·µÄÄÚÈÝ', () => {
-	/*class App extends Component {
-	  render() {
-	    return <h1>Hello World!</h1>;
-	  }
-	};
-    render(<App/>, document.getElementById('app'));
-    expect(querySelector('#app h1').textContent).to.contain('Hello World!');*/
+/* global describe, it, expect */
+describe('ä¸€ä¸ªåŸºæœ¬æ–¹æ³•æµ‹è¯•', () => {
+  it('æ˜¯å¦ç›¸ç­‰', () => {
     expect('Hello World!').to.contain('Hello World!');
   });
 });
