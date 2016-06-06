@@ -24,7 +24,7 @@ cp('-R', 'static/', assetsPath);
 
 webpack(webpackConfig, function (err, stats) {
   spinner.stop();
-  if (err) throw err
+  if (err) throw err;
   process.stdout.write(stats.toString({
     colors: true,
     modules: false,
@@ -32,4 +32,4 @@ webpack(webpackConfig, function (err, stats) {
     chunks: false,
     chunkModules: false
   }) + '\n');
-});
+})

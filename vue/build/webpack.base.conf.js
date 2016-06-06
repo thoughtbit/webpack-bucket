@@ -1,7 +1,7 @@
 var path = require('path');
-var config = require('../config');
+var config = require('../config')
+var utils = require('./utils')
 var autoprefixer = require('autoprefixer-core');
-var cssLoaders = require('./css-loaders');
 var projectRoot = path.resolve(__dirname, '../');
 
 module.exports = {
@@ -70,18 +70,17 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|ttf|eot|svg)$/,
-        loader : 'file',
+        loader: 'url',
         query: {
-          name: path.join(config.build.assetsSubDirectory + '/assets/fonts/', '[name].[hash:7].[ext]')
+          name: utils.assetsPath('assets/fonts/[name].[hash:7].[ext]')
         }
       },
       {
-        test: /\.(png|jpe?g|gif)(\?.*)?$/,
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: path.join(config.build.assetsSubDirectory + '/assets/images/', '[name].[hash:7].[ext]')
-        }
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loaders: [
+          'url?limit=10000&name=' + utils.assetsPath('assets/images/[name].[hash:7].[ext]'),
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
       }
       /*
       {
@@ -95,7 +94,7 @@ module.exports = {
     ]
   },
   vue: {
-    loaders: cssLoaders()
+    loaders: utils.cssLoaders()
   },
   postcss: [
     autoprefixer({

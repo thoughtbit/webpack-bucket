@@ -1,22 +1,26 @@
 var webpack = require('webpack');
 var merge = require('webpack-merge');
 var baseWebpackConfig = require('./webpack.base.conf');
-var cssLoaders = require('./css-loaders');
-var hotReload = require('./hot-reload');
+var config = require('../config');
+var utils = require('./utils');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var WebpackNotifierPlugin = require('webpack-notifier');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // hot reload
-hotReload(baseWebpackConfig);
+utils.hotReload(baseWebpackConfig);
 
 module.exports = merge(baseWebpackConfig, {
   // eval-source-map is 每个模块以eval方式执行并且SourceMap以DataUrl的方式添加进eval
-  devtool: '#eval-source-map',
+  // devtool: '#eval-source-map',
+  devtool: '#inline-source-map',
   module: {
-    loaders: cssLoaders()
+    loaders: utils.styleLoaders()
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': config.dev.env
+    }),
     // 将jQuery全局暴露
     new webpack.ProvidePlugin({
       $: "jquery",
@@ -43,11 +47,7 @@ module.exports = merge(baseWebpackConfig, {
       inject: true,
       favicon: 'favicon.ico'
     }),
-    // copy指定文件到指定路径
-    // https://www.npmjs.com/package/copy-webpack-plugin
-    new CopyWebpackPlugin([
-      { from: 'src/assets/images/', to: 'static/images/'},
-      /*{ from: 'src/assets/fonts/', to: 'static/fonts/'}*/
-    ])
+    // webpack + node-notifier = build status system notifications
+    new WebpackNotifierPlugin({title: '项目构建成功✈✈✈', excludeWarnings: true})
   ]
 });

@@ -61,8 +61,8 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: process.env.NODE_ENV === 'testing' ? 'index.html' : config.build.index,
       template: 'index.template.html',
-      // template:__dirname + '/src/app.html',
-      // chunks: ['app', 'vendor'],
+      /*template:__dirname + '/src/app.html'*/
+      chunks: ['app', 'vendor', 'all-commons'],
       inject: 'body',
       favicon: 'favicon.ico',
       minify: {
@@ -76,7 +76,6 @@ module.exports = merge(baseWebpackConfig, {
       chunksSortMode: 'dependency'
     }),
     // 公用的模块分开打包
-    // split vendor js into its own file
     new CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {
@@ -90,11 +89,22 @@ module.exports = merge(baseWebpackConfig, {
         )
       }
     }),
-    // extract webpack runtime and module manifest to its own file in order to
-    // prevent vendor hash from being updated whenever app bundle is updated
     new CommonsChunkPlugin({
-      name: 'manifest',
-      chunks: ['vendor']
+      name: 'admin-commons',
+      chunks: ['ap1', 'ap2']
+    }),
+    new CommonsChunkPlugin({
+      name: 'commons',
+      chunks: ['p1', 'p2', 'admin-commons.js'],
+      minChunks: 2
+    }),
+    new CommonsChunkPlugin({
+      name: 'c-commons',
+      chunks: ['p3', 'ap3']
+    }),
+    new CommonsChunkPlugin({
+      name: 'all-commons',
+      chunks: ['commons.js', 'c-commons.js']
     }),
     // webpack + node-notifier = build status system notifications
     new WebpackNotifierPlugin({title: '项目构建成功✈✈✈', excludeWarnings: true})

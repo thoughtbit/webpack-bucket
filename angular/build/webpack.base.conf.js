@@ -9,7 +9,6 @@ module.exports = {
     app: './src/main',
     vendor: [
       'angular',
-      'angular-animate',
       'angular-ui-router',
       'oclazyload',
       'jquery',
@@ -47,11 +46,6 @@ module.exports = {
         loader: 'eslint',
         include: projectRoot,
         exclude: /node_modules|bower_components/
-      },
-      {
-        test: /\.scss$/,
-        loader: "scsslint",
-        exclude: /node_modules/
       }
     ],
     loaders: [
