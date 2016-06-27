@@ -20,7 +20,11 @@ module.exports = {
     publicPath: config.build.assetsPublicPath,
     filename: '[name].js'
   },
+  // 是否开启缓存
+  // cache: true,
   resolve: {
+    // 减少无用的目录请求
+    root: [path.resolve(__dirname, '../src')],
     // 自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名
     extensions: ['', '.js', '.jsx'],
     fallback: [path.join(__dirname, '../node_modules')],
@@ -40,7 +44,19 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'eslint',
         include: projectRoot,
-        exclude: /node_modules|bower_components/
+        exclude: /node_modules|bower_components/,
+        query: {
+          cacheDirectory: true
+        }
+      },
+      {
+        test: /\.js$/,
+        loader: 'eslint',
+        include: projectRoot,
+        exclude: /node_modules|bower_components/,
+        query: {
+          cacheDirectory: true
+        }
       }
     ],
     loaders: [
@@ -48,7 +64,19 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel',
         include: projectRoot,
-        exclude: /node_modules|bower_components/
+        exclude: /node_modules|bower_components/,
+        query: {
+          cacheDirectory: true
+        }
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        include: projectRoot,
+        exclude: /node_modules|bower_components/,
+        query: {
+          cacheDirectory: true
+        }
       },
       {
         test: /\.json$/,
