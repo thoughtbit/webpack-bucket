@@ -48,7 +48,7 @@ module.exports = merge(baseWebpackConfig, {
       }*/
     }),
     // 按引用频度来排序 ID，以便达到减少文件大小的效果
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     // extract css into its own file
     // new ExtractTextPlugin('[name].[contenthash].css'),
     new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),

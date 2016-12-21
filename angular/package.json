@@ -79,7 +79,7 @@
     "less-loader": "^2.2.2",
     "node-sass": "^3.4.2",
     "image-webpack-loader": "^1.8.0",
-    "webpack": "^1.12.2",
+    "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0",
     "webpack-merge": "^0.8.3",
